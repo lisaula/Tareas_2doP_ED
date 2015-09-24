@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>636</width>
-    <height>333</height>
+    <width>573</width>
+    <height>200</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -70,6 +70,58 @@
    </property>
    <property name="text">
     <string>MergeSort</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="quick">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>150</y>
+     <width>101</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>QuickSort</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="Heap">
+   <property name="geometry">
+    <rect>
+     <x>240</x>
+     <y>150</y>
+     <width>101</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>HeapSort</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="Bin">
+   <property name="geometry">
+    <rect>
+     <x>350</x>
+     <y>150</y>
+     <width>101</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>BinSort</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton">
+   <property name="geometry">
+    <rect>
+     <x>460</x>
+     <y>150</y>
+     <width>101</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>BubbleSort</string>
    </property>
   </widget>
  </widget>

@@ -18,8 +18,21 @@ SortsGraph::~SortsGraph()
 
 void SortsGraph::on_Merge_clicked()
 {
-    sort->mergeSort(array,s,0,s-1);
-    print();
+    cout<<"Size "<<s<<endl;
+    int arr[s];
+    for(int i =0;i<s;i++){
+        arr[i]=array[i];
+    }
+
+    int arr_size = sizeof(arr)/sizeof(arr[0]);
+
+    printf("MERGESORT \n");
+    printArray(arr, arr_size);
+
+    sort->mergeSort(arr, 0, arr_size - 1);
+
+    printf("--------------------\n");
+    printArray(arr, arr_size);
 }
 
 void SortsGraph::on_Introduce_clicked()
@@ -52,4 +65,47 @@ void SortsGraph::print()
         cout<<array[i]<<" ";
     }
     cout<<endl;
+}
+
+void SortsGraph::on_quick_clicked()
+{
+    int arr[s];
+    for(int i =0;i<s;i++){
+        arr[i]=array[i];
+    }
+    cout<<"Metodo quickSort"<<endl;
+    printArray(arr,s);
+    cout<<"Lista ya ordenada"<<endl;
+    sort->quicksort(arr,0,s-1);
+    printArray(arr,s);
+    cout << endl;
+}
+
+void SortsGraph::on_Heap_clicked()
+{
+    int arr[s];
+    for(int i =0;i<s;i++){
+        arr[i]=array[i];
+    }
+    const size_t sz = sizeof(arr)/sizeof(arr[0]);
+    cout<<"HEAPSORT"<<endl;
+    printArray(arr, sz);
+    cout << "----------------------------------" << endl;
+    sort->heapsort(arr, sz);
+    printArray(arr, sz);
+    cout << endl;
+}
+
+void SortsGraph::on_Bin_clicked()
+{
+    int arr[s];
+    for(int i =0;i<s;i++){
+        arr[i]=array[i];
+    }
+    int n = sizeof(arr)/sizeof(arr[0]);
+    cout<<"BINSORT"<<endl;
+    printArray(arr,s);
+    sort->binsort(arr,n);
+    cout << "----------------------------------" << endl;
+    printArray(arr,s);
 }

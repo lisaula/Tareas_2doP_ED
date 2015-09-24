@@ -5,6 +5,9 @@
 #include <QMessageBox>
 #include "sorts.h"
 #include<iostream>
+#include <stdlib.h>
+#include <stdio.h>
+#include<vector>
 using namespace std;
 namespace Ui {
 class SortsGraph;
@@ -25,9 +28,22 @@ private slots:
 
     void on_init_clicked();
 
+    void on_quick_clicked();
+
+    void on_Heap_clicked();
+
+    void on_Bin_clicked();
+
 private:
     Sorts *sort = new Sorts();
     void print();
+    void printArray(int A[], int size)
+    {
+        int i;
+        for (i=0; i < size; i++)
+            printf("%d ", A[i]);
+        cout<<endl;
+    }
     int *array, cont, s;
     Ui::SortsGraph *ui;
 };
