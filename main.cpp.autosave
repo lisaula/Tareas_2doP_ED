@@ -104,9 +104,6 @@ int main(int argc, char *argv[])
       Nodo* n = krus->grafo->buscarNodo(7);
       cout<<n->tree<<endl;
       cout<<krus->grafo->nodos<<endl;
-      for(int i = 0;i<krus->aristas.size();i++){
-          cout<<krus->aristas[i]->intree;
-      }
       cout<<endl;
 //      cout<<krus->cola->size()<<endl;
 //      QString t =krus->cola->imprimir();

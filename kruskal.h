@@ -8,8 +8,10 @@
 class Kruskal
 {
 public:
-    Cola *cola;
-    int cont;
+    Cola *cola, *deshechos;
+    int cont, contNode;
+    bool checkCounter(Nodo *f);
+    int seekFinal(Nodo * o);
     vector<int>trees;
     vector<Arista*>aristas;
     bool checkSiblings(Nodo *n, int tree, Arista *v);
@@ -17,6 +19,8 @@ public:
     bool checkAristas(Nodo* n);
     void newTree();
     bool isNewTree(int tree);
+    bool checkNodes(Nodo *o, Nodo *d);
+
     Grafo * grafo;
     multimap<int, Arista *> sortAristas(vector<Arista*>arcos);
     void analisis();

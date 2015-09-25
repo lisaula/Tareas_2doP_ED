@@ -28,13 +28,13 @@ Nodo::Nodo(int valor)
     this->valor=valor;
     this->Ady=NULL;
     this->aristas= new ListaAristas();
-    tree=0;
+    tree=-1;
 }
 
 Nodo::Nodo(){
     valor=0;
     Ady=NULL;
     aristas=NULL;
-    tree=0;
+    tree=-1;
 }
 

@@ -18,7 +18,6 @@ SortsGraph::~SortsGraph()
 
 void SortsGraph::on_Merge_clicked()
 {
-    cout<<"Size "<<s<<endl;
     int arr[s];
     for(int i =0;i<s;i++){
         arr[i]=array[i];
@@ -51,12 +50,13 @@ void SortsGraph::on_Introduce_clicked()
 
 void SortsGraph::on_init_clicked()
 {
+    cont=0;
     s = ui->size->value();
     array = new int[s];
     for(int i =0;i<s;i++){
         array[i]=0;
     }
-    cout<<"arreglo inicializado"<<endl;
+    cout<<"arreglo inicializado con "<<s<<" posiciones."<<endl;
 }
 
 void SortsGraph::print()
@@ -73,9 +73,9 @@ void SortsGraph::on_quick_clicked()
     for(int i =0;i<s;i++){
         arr[i]=array[i];
     }
-    cout<<"Metodo quickSort"<<endl;
+    cout<<"QUIKSORT"<<endl;
     printArray(arr,s);
-    cout<<"Lista ya ordenada"<<endl;
+    printf("--------------------\n");
     sort->quicksort(arr,0,s-1);
     printArray(arr,s);
     cout << endl;
@@ -108,4 +108,24 @@ void SortsGraph::on_Bin_clicked()
     sort->binsort(arr,n);
     cout << "----------------------------------" << endl;
     printArray(arr,s);
+}
+//001-813-385-8027;
+////telefono
+//908-337-3592;
+
+////noe
+//813-361-9823
+
+void SortsGraph::on_pushButton_clicked()
+{
+    int arr[s];
+    for(int i =0;i<s;i++){
+        arr[i]=array[i];
+    }
+    cout<<"BUBBLESORT"<<endl;
+    printArray(arr,s);
+    sort->bubbleSort(arr,s);
+    cout << "----------------------------------" << endl;
+    printArray(arr,s);
+
 }

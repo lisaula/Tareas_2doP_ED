@@ -58,6 +58,12 @@
      <height>24</height>
     </rect>
    </property>
+   <property name="minimum">
+    <number>-99999</number>
+   </property>
+   <property name="maximum">
+    <number>99999</number>
+   </property>
   </widget>
   <widget class="QPushButton" name="Merge">
    <property name="geometry">

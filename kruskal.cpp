@@ -1,5 +1,35 @@
 #include "kruskal.h"
 
+bool Kruskal::checkCounter(Nodo *f)
+{
+    if((f->tree*-1) == grafo->nodos)
+        return true;
+
+    return false;
+}
+
+int Kruskal::seekFinal(Nodo *o)
+{
+    int n = o->tree;
+    Nodo* f=NULL;
+    cout<<"SeekFinal"<<endl;
+    if(n>0){
+        f=grafo->buscarNodo(n);
+        if(f->tree<0){
+            cout<<"Retorno n"<<n<<endl;
+            return n;
+        }
+        else{
+            cout<<"Retorno f-tree"<<f->tree<<endl;
+            return f->tree;
+        }
+    }else{
+        cout<<"Retorno o-valor"<<o->valor<<endl;
+        return o->valor;
+    }
+
+}
+
 bool Kruskal::checkSiblings(Nodo *n, int tree, Arista *v)
 {
     Arista *a;
@@ -68,6 +98,7 @@ bool Kruskal::checkAristas(Nodo *n)
     return false;
 }
 
+
 void Kruskal::newTree()
 {
     cont++;
@@ -81,6 +112,29 @@ bool Kruskal::isNewTree(int tree)
             return true;
         }
     }
+    return false;
+}
+
+bool Kruskal::checkNodes(Nodo *o, Nodo *d)
+{
+    cout<<"CheckNodes"<<endl;
+    cout<<"o-tree "<<o->tree<<" d-tree "<<d->tree<<endl;
+    if(o->tree ==-1 &&  d->tree==-1){
+        cout<<"retorno false 1er if -1s"<<endl;
+        return false;
+    }
+
+
+    int n = seekFinal(o);
+    int n2 = seekFinal(d);
+    cout<<"Aqui en CN"<<endl;
+    cout<<o->valor<<" o final: "<<n<<" "<<d->valor<<" d final: "<<n2<<endl;
+    if(n==n2){
+        cout<<"comparo "<<n<<" y "<<n2<<endl;
+        cout<<"retorno true..."<<endl;
+        return true;
+    }
+    cout<<"retorno false"<<endl;
     return false;
 }
 
@@ -106,86 +160,270 @@ void Kruskal::analisis()
         ari++;
     }
     Arista *a=NULL;
-    Nodo* o=NULL, *d=NULL;
+    Nodo* o=NULL, *d=NULL, *final=NULL;
+    //int f=0;
     //string t = cola->imprimir().toStdString();
     cout<<cola->imprimir().toStdString()<<endl;
+    int c =0;
+//    int f1=0,f2=0;
+    final=grafo->buscarNodo(1);
+    while(!checkCounter(final)){
 
-    while(cola->size()>0){
-        cout<<"entro while"<<endl;
+        c++;
+        if(cola->size()==0)break;
         a=cola->pop()->valor;
-        cout<<"evaluando a "<<a->origen->valor<<" peso "<<a->valor<<" apunto "<<a->apuntoA->valor<<endl;
-        cout<<endl;
         o=a->origen;
         d=a->apuntoA;
-        QString t =cola->imprimir();
-        cout<<t.toStdString()<<endl;
-        cout<<"tree "<<cont<<endl;
-        if(o->tree==0 || d->tree==0){
-            cout<<"Entro 1er if"<<endl;
-            if(o->tree==0 && d->tree==0){
-                cout<<"Entro 1.1"<<endl;
-                if(trees.size()>0){
-                    if(!checkAristas(o) && !checkAristas(d)){
-                        newTree();
-                        o->setTree(cont);
-                        d->setTree(cont);
-                        a->setIntree(true);
-                        aristas.push_back(a);
-                        cout<<"Entro 1"<<endl;
-                        cout<<"tree "<<cont<<endl;
-                        continue;
-                    }else{
-                        if(!checkTrees(o,a) && !checkTrees(d,a)){
-                            o->setTree(cont);
-                            d->setTree(cont);
-                            a->setIntree(true);
-                            aristas.push_back(a);
-                            cout<<"Entro 2"<<endl;
-                            cout<<"tree "<<cont<<endl;
-                            continue;
-                        }
-                    }
-                }else{
-                    newTree();
-                    o->setTree(cont);
-                    d->setTree(cont);
-                    a->setIntree(true);
-                    aristas.push_back(a);
-                    cout<<"Entro 3"<<endl;
-                    cout<<"tree "<<cont<<endl;
-                    continue;
-                }
-            }
-
-            cout<<"trees size "<<trees.size()<<endl;
-            cout<<"Que pedo porq no quisiste "<<endl;
-            if(trees.size()!=0){
-                cout<<"no quiso 1"<<endl;
-                if(!checkTrees(o,a) && !checkTrees(d,a)){
-                    o->setTree(cont);
-                    d->setTree(cont);
-                    a->setIntree(true);
-                    aristas.push_back(a);
-                    cout<<"Entro 4"<<endl;
-                    cout<<"tree "<<cont<<endl;
-                    continue;
-                }
-            }else{
-                newTree();
-                o->setTree(cont);
-                d->setTree(cont);
+        cout<<"Evaluando "<< o->valor<<"pesa "<<a->valor<<" apunta "<<d->valor<<endl;
+        if(c==1){
+            if(!checkNodes(o,d)){
                 a->setIntree(true);
                 aristas.push_back(a);
-                cout<<"Entro 5"<<endl;
-                cout<<"tree "<<cont<<endl;
+                o->setTree(d->valor);
+                d->setTree(d->tree-1);
+                final = d;
+                contNode++;
+                cout<<"Seteo c==1"<<endl;
+                cout<<"o final: "<<o->tree<<" d final: "<<d->tree<<endl;
                 continue;
             }
-            cout<<"Salio"<<endl;
-        }else{
-            continue;
         }
+        if(!checkNodes(o,d)){
+            cout<<"Entro"<<endl;
+            a->setIntree(true);
+            aristas.push_back(a);
+            //int of=, df;
+            if(o->tree<-1 && d->tree==-1){
+                d->setTree(o->valor);
+                o->setTree(o->tree-1);
+                cout<<"Entro 1"<<endl;
+                cout<<"o final: "<<o->tree<<" d final: "<<d->tree<<endl;
+                final=o;
+                continue;
+            }
+            if(o->tree==-1 && d->tree<-1){
+                o->setTree(d->valor);
+                d->setTree(d->tree-1);
+                cout<<"Entro 2"<<endl;
+                cout<<"o final: "<<o->tree<<" d final: "<<d->tree<<endl;
+                final = d;
+                continue;
+            }
+            if(o->tree>0 && d->tree>0){
+                int n=seekFinal(o);
+                final = grafo->buscarNodo(n);
+                int m = seekFinal(d);
+                Nodo* temp = grafo->buscarNodo(m);
+                cout<<"Entro 5"<<endl;
+                if((final->tree*-1)>(temp->tree*-1)){
+                    cout<<final->tree<<endl;
+                    final->setTree(final->tree+temp->tree);
+                    cout<<final->tree<<endl;
+                    d->setTree(final->valor);
+                    temp->setTree(final->valor);
+                    cout<<"o final: "<<o->tree<<" d final: "<<d->tree<<endl;
+                    cout<<"final "<<temp->tree<<" Final sumo "<<final->tree<<endl;
+                    continue;
+                }else{
+                    cout<<temp->tree<<endl;
+                    temp->setTree(temp->tree+final->tree);
+                    cout<<temp->tree<<endl;
+                    o->setTree(temp->valor);
+                    final->setTree(temp->valor);
+                    cout<<"o final: "<<o->tree<<" d final: "<<d->tree<<endl;
+                    cout<<"final "<<final->tree<<" Final sumo "<<temp->tree<<endl;
+                    final = temp;
+                    continue;
+                }
 
+            }
+            if(o->tree<0 && d->tree<0){
+                int n=seekFinal(o);
+                final = grafo->buscarNodo(n);
+                int m = seekFinal(d);
+                Nodo* temp = grafo->buscarNodo(m);
+                cout<<"Entro 6"<<endl;
+                if((final->tree*-1)>(temp->tree*-1)){
+                    cout<<final->tree<<endl;
+                    final->setTree(final->tree+temp->tree);
+                    cout<<final->tree<<endl;
+                    d->setTree(final->valor);
+                    temp->setTree(final->valor);
+                    cout<<"o final: "<<o->tree<<" d final: "<<d->tree<<endl;
+                    cout<<"final "<<temp->tree<<" Final sumo "<<final->tree<<endl;
+                    continue;
+                }else{
+                    cout<<temp->tree<<endl;
+                    temp->setTree(temp->tree+final->tree);
+                    cout<<temp->tree<<endl;
+                    o->setTree(temp->valor);
+                    final->setTree(temp->valor);
+                    cout<<"o final: "<<o->tree<<" d final: "<<d->tree<<endl;
+                    cout<<"final "<<final->tree<<" Final sumo "<<temp->tree<<endl;
+                    final=temp;
+                    continue;
+                }
+
+            }
+            if(d->tree<-1&& o->tree==-1){
+                o->setTree(d->valor);
+                d->setTree(d->tree-1);
+                cout<<"Entro 3"<<endl;
+                cout<<"o final: "<<o->tree<<" d final: "<<d->tree<<endl;
+                final=d;
+                continue;
+            }
+            if(d->tree==-1 && o->tree<-1){
+                d->setTree(o->valor);
+                o->setTree(o->tree-1);
+                cout<<"Entro 4"<<endl;
+                cout<<"o final: "<<o->tree<<" d final: "<<d->tree<<endl;
+                final=o;
+                continue;
+            }
+            if(o->tree==-1 && d->tree==-1){
+                o->setTree(d->valor);
+                d->setTree(d->tree-1);
+                contNode++;
+                cout<<"Seteo -1 -1"<<endl;
+                cout<<"o final: "<<o->tree<<" d final: "<<d->tree<<endl;
+                final=d;
+                continue;
+            }
+            if(o->tree==-1 && d->tree>0){
+                int f =seekFinal(d);
+                o->setTree(f);
+                final = grafo->buscarNodo(f);
+                final->setTree(final->tree-1);
+                contNode++;
+                cout<<"Seteo o=-1 d>0"<<endl;
+                cout<<"o final: "<<o->tree<<" d final: "<<d->tree<<endl;
+                continue;
+            }
+            if(d->tree==-1 && o->tree>0){
+                int f = seekFinal(o);
+                d->setTree(f);
+                final = grafo->buscarNodo(f);
+                final->setTree(final->tree-1);
+                cout<<"Seteo d=-1 o>0"<<endl;
+                cout<<"o final: "<<o->tree<<" d final: "<<d->tree<<endl;
+                continue;
+            }
+            if(d->tree<0 && o->tree>0){
+                int m = d->tree;
+                final = grafo->buscarNodo(seekFinal(o));
+                int n = final->tree;
+                if((m*-1)>=(n*-1)){
+                    d->setTree(d->tree+n);
+                    o->setTree(d->valor);
+                    final=d;
+                    cout<<"Seteo d<0 o>0 1er if"<<endl;
+                    cout<<"o final: "<<o->tree<<" d final: "<<d->tree<<endl;
+                }else{
+                    final->setTree(final->tree+m);
+                    d->setTree(final->valor);
+                    cout<<"Seteo o<0 d>0 else"<<endl;
+                    cout<<"o final: "<<o->tree<<" d final: "<<d->tree<<endl;
+                }
+                continue;
+            }
+            if(o->tree<0 && d->tree>0){
+                int m = o->tree;
+                final = grafo->buscarNodo(seekFinal(d));
+                int n = final->tree;
+                if((m*-1)>=(n*-1)){
+                    o->setTree(o->tree+n);
+                    d->setTree(o->valor);
+                    final=o;
+                    cout<<"Seteo o<0 d>0 1er if"<<endl;
+                    cout<<"o final: "<<o->tree<<" d final: "<<d->tree<<endl;
+                }else{
+                    final->setTree(final->tree+m);
+                    o->setTree(final->valor);
+                    cout<<"Seteo o<0 d>0 else"<<endl;
+                    cout<<"o final: "<<o->tree<<" d final: "<<d->tree<<endl;
+                }
+                continue;
+            }
+        }
     }
+
+//    while(cola->size()>0){
+//        cout<<"entro while"<<endl;
+//        a=cola->pop()->valor;
+//        cout<<"evaluando a "<<a->origen->valor<<" peso "<<a->valor<<" apunto "<<a->apuntoA->valor<<endl;
+//        cout<<endl;
+//        o=a->origen;
+//        d=a->apuntoA;
+//        QString t =cola->imprimir();
+//        cout<<t.toStdString()<<endl;
+//        cout<<"tree "<<cont<<endl;
+//        if(o->tree==0 || d->tree==0){
+//            cout<<"Entro 1er if"<<endl;
+//            if(o->tree==0 && d->tree==0){
+//                cout<<"Entro 1.1"<<endl;
+//                if(trees.size()>0){
+//                    if(!checkAristas(o) && !checkAristas(d)){
+//                        newTree();
+//                        o->setTree(cont);
+//                        d->setTree(cont);
+//                        a->setIntree(true);
+//                        aristas.push_back(a);
+//                        cout<<"Entro 1"<<endl;
+//                        cout<<"tree "<<cont<<endl;
+//                        continue;
+//                    }else{
+//                        if(!checkTrees(o,a) && !checkTrees(d,a)){
+//                            o->setTree(cont);
+//                            d->setTree(cont);
+//                            a->setIntree(true);
+//                            aristas.push_back(a);
+//                            cout<<"Entro 2"<<endl;
+//                            cout<<"tree "<<cont<<endl;
+//                            continue;
+//                        }
+//                    }
+//                }else{
+//                    newTree();
+//                    o->setTree(cont);
+//                    d->setTree(cont);
+//                    a->setIntree(true);
+//                    aristas.push_back(a);
+//                    cout<<"Entro 3"<<endl;
+//                    cout<<"tree "<<cont<<endl;
+//                    continue;
+//                }
+//            }
+
+//            cout<<"trees size "<<trees.size()<<endl;
+//            cout<<"Que pedo porq no quisiste "<<endl;
+//            if(trees.size()!=0){
+//                cout<<"no quiso 1"<<endl;
+//                if(!checkTrees(o,a) && !checkTrees(d,a)){
+//                    o->setTree(cont);
+//                    d->setTree(cont);
+//                    a->setIntree(true);
+//                    aristas.push_back(a);
+//                    cout<<"Entro 4"<<endl;
+//                    cout<<"tree "<<cont<<endl;
+//                    continue;
+//                }
+//            }else{
+//                newTree();
+//                o->setTree(cont);
+//                d->setTree(cont);
+//                a->setIntree(true);
+//                aristas.push_back(a);
+//                cout<<"Entro 5"<<endl;
+//                cout<<"tree "<<cont<<endl;
+//                continue;
+//            }
+//            cout<<"Salio"<<endl;
+//        }else{
+//            continue;
+//        }
+
+//    }
     Arista* m=NULL;
     cout<<"Size aristas "<<aristas.size()<<endl;
     for(int i =0;i<aristas.size();i++){
@@ -198,6 +436,8 @@ Kruskal::Kruskal(Grafo *g)
 {
     grafo = g;
     cola = new Cola();
+    deshechos = new Cola();
     cont=0;
+    contNode=0;
 }
 

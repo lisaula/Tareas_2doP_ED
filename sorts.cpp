@@ -136,7 +136,7 @@ void Sorts::quicksort(int *arr, int izq, int der)
 
 void Sorts::binsort(int arr[], int n)
 {
-    int m =101;
+    int m =501;
     int buckets[m];
 
     for(int i =0; i<m;i++){
@@ -149,6 +149,20 @@ void Sorts::binsort(int arr[], int n)
     for(int i =0, j=0;j<m;j++)
         for(int k = buckets[j];k>0;k--)
             arr[i++]=j;
+}
+
+void Sorts::bubbleSort(int arr[], int n)
+{
+    int temp=0;
+    for(int i =0;i<=n-2;i++){
+        for(int j=i+1;j<=n-1;j++){
+            if(arr[i]>arr[j]){
+                temp=arr[i];
+                arr[i]=arr[j];
+                arr[j]=temp;
+            }
+        }
+    }
 }
 
 Sorts::Sorts()

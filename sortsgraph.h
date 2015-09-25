@@ -34,6 +34,8 @@ private slots:
 
     void on_Bin_clicked();
 
+    void on_pushButton_clicked();
+
 private:
     Sorts *sort = new Sorts();
     void print();

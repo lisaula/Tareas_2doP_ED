@@ -13,6 +13,7 @@ public:
     void siftDown( int *a, int k, int N);
     void quicksort(int * arr, int izq, int der);
     void binsort(int arr[], int n);
+    void bubbleSort(int arr[], int n);
     Sorts();
 };
 
