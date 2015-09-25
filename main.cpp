@@ -11,22 +11,17 @@ using namespace std;
 void printGrafos(Nodo* actual){
     while(actual){
         cout<<"Actual: "<<actual->valor<<endl;
-        //if(actual->aristas){
-            //actual->aristas->print(actual->aristas->raiz);
-            actual->printArcos();
-            //Arista * a =actual->arcos[1];
-            //cout<<a->apuntoA->valor<<endl;
-        //}
+        actual->printArcos();
         cout<<endl;
         actual = actual->Ady;
     }
 }
-void printArcos(vector<Arista*> v){
-    for(int i =0;i<v.size();i++){
-        Arista * temp= v[i];
-        cout<<"Vengo de: "<<temp->origen->valor<<" Peso: "<<temp->valor<<" Apunto a: "<<temp->apuntoA->valor<<endl;
-    }
-}
+//void printArcos(vector<Arista*> v){
+//    for(int i =0;i<v.size();i++){
+//        Arista * temp= v[i];
+//        cout<<"Vengo de: "<<temp->origen->valor<<" Peso: "<<temp->valor<<" Apunto a: "<<temp->apuntoA->valor<<endl;
+//    }
+//}
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
@@ -69,11 +64,11 @@ int main(int argc, char *argv[])
     grafo->addArco(5,6,9);
     grafo->addArco(5,7,2);
     grafo->addArco(6,7,7);
-    //grafo->addArco(5,6,7);
+    //grafo->addAcout<<"AQUI Actual"<<endl;rco(5,6,7);
     //    grafo->agregarArista(2,3,2);
     //    grafo->agregarArista(3,4,1);
     //    grafo->agregarArista(4,1,8);
-        //printGrafos(grafo->actual);
+    printGrafos(grafo->actual);
     //      grafo->addArco(1,5,4);
     //      grafo->addArco(1,2,3);
     //      grafo->addArco(2,3,2);
@@ -88,25 +83,24 @@ int main(int argc, char *argv[])
     //cout<<grafo->actual->arcos[0]->apuntoA->valor<<endl;
 
 
-   // Dijks *dis= new Dijks(grafo);
-    Nodo* origen = grafo->buscarNodo(0);
-//    dis->Analisis(origen);
+   //Dijks *dis= new Dijks(grafo);
+   Nodo* origen = grafo->buscarNodo(0);
+   //dis->Analisis(origen);
 
-//    Floyd * floyd = new Floyd(grafo);
-//    floyd->analisis(origen);
-//    floyd->camino(1,4);
-
+    Floyd * floyd = new Floyd(grafo);
+    floyd->analisis(origen);
+    floyd->camino(1,4);
+    floyd->printTabla();
+    cout<<endl;
+    floyd->printP();
 //    Prim * prim = new Prim(grafo);
 //    prim->analisis(origen);
 
-      Kruskal *krus=new Kruskal(grafo);
-      krus->analisis();
-      Nodo* n = krus->grafo->buscarNodo(7);
-      cout<<n->tree<<endl;
-      cout<<krus->grafo->nodos<<endl;
-      for(int i = 0;i<krus->aristas.size();i++){
-          cout<<krus->aristas[i]->intree;
-      }
+//      Kruskal *krus=new Kruskal(grafo);
+//      krus->analisis();
+//      Nodo* n = krus->grafo->buscarNodo(7);
+//      cout<<n->tree<<endl;
+//      cout<<krus->grafo->nodos<<endl;
       cout<<endl;
 //      cout<<krus->cola->size()<<endl;
 //      QString t =krus->cola->imprimir();

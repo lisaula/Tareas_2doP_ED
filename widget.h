@@ -2,8 +2,8 @@
 #define WIDGET_H
 
 #include <QWidget>
-#include "dijkstrap.h"
 #include"sortsgraph.h"
+#include"recorridos.h"
 namespace Ui {
 class Widget;
 }

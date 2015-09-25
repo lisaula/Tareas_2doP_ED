@@ -161,11 +161,8 @@ void Kruskal::analisis()
     }
     Arista *a=NULL;
     Nodo* o=NULL, *d=NULL, *final=NULL;
-    //int f=0;
-    //string t = cola->imprimir().toStdString();
-    cout<<cola->imprimir().toStdString()<<endl;
     int c =0;
-//    int f1=0,f2=0;
+
     final=grafo->buscarNodo(1);
     while(!checkCounter(final)){
 

@@ -16,8 +16,8 @@ Widget::~Widget()
 
 void Widget::on_Tarea1_clicked()
 {
-    Dijkstrap *d = new Dijkstrap();
-    d->setVisible(true);
+    Recorridos *r = new Recorridos();
+    r->show();
 }
 
 void Widget::on_pushButton_clicked()

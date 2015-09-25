@@ -18,7 +18,6 @@ SOURCES += main.cpp\
     arista.cpp \
     grafo.cpp \
     listaaristas.cpp \
-    dijkstrap.cpp \
     dijks.cpp \
     floyd.cpp \
     prim.cpp \
@@ -26,14 +25,16 @@ SOURCES += main.cpp\
     nodoc.cpp \
     cola.cpp \
     sorts.cpp \
-    sortsgraph.cpp
+    sortsgraph.cpp \
+    dijksttable.cpp \
+    recorridos.cpp \
+    floydgraph.cpp
 
 HEADERS  += widget.h \
     nodo.h \
     arista.h \
     grafo.h \
     listaaristas.h \
-    dijkstrap.h \
     dijks.h \
     floyd.h \
     prim.h \
@@ -41,8 +42,13 @@ HEADERS  += widget.h \
     nodoc.h \
     cola.h \
     sorts.h \
-    sortsgraph.h
+    sortsgraph.h \
+    dijksttable.h \
+    recorridos.h \
+    floydgraph.h
 
 FORMS    += widget.ui \
-    dijkstrap.ui \
-    sortsgraph.ui
+    sortsgraph.ui \
+    dijksttable.ui \
+    recorridos.ui \
+    floydgraph.ui

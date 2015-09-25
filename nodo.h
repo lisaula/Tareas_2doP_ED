@@ -4,6 +4,8 @@
 #include <iostream>
 #include<vector>
 #include "listaaristas.h"
+#include<QString>
+
 using namespace std;
 class Arista;
 class ListaAristas;
@@ -15,6 +17,7 @@ public:
     bool visitado=false;
     vector<Arista*>arcos;
     void addArco(Arista*);
+    QString imprimirArcos();
     void setTree(int v);
     Nodo *Ady;
     void printArcos();

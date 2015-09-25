@@ -116,13 +116,15 @@ void Floyd::print(int o, int d)
 
     print(o,k);
     cout<<vertices[k]->valor<<" ";
+    cout<<"CAMINO"<<endl;
     print(k,d);
 }
 
 void Floyd::camino(int origen, int destino)
 {
-    int o = origen -1;
-    int d = destino -1;
+    int o = origen;// -1;
+    int d = destino;// -1;
+    cout<<"CAMINO"<<endl;
     print(o,d);
 }
 
@@ -147,6 +149,7 @@ void Floyd::printP()
             t=p[i][x];
                 cout<<t<<" ";
         }
+        cout<<endl;
     }
     cout<<endl;
 }

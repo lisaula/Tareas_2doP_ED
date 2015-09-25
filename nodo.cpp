@@ -5,6 +5,20 @@ void Nodo::addArco(Arista* v)
     arcos.push_back(v);
 }
 
+QString Nodo::imprimirArcos()
+{
+    QString texto="";
+    for(int i=0;i<arcos.size();i++){
+        Arista *a = arcos[i];
+        if(a->apuntoA==this){
+            texto+=QString(" Peso: %1 Apunto a: %2 \n").arg(a->valor).arg(a->origen->valor);
+        }else{
+            texto+=QString(" Peso: %1 Apunto a: %2 \n").arg(a->valor).arg(a->apuntoA->valor);
+        }
+    }
+    return texto;
+}
+
 void Nodo::setTree(int v)
 {
     tree=v;
