@@ -4,6 +4,8 @@
 #include"dijksttable.h"
 #include"floyd.h"
 #include"floydgraph.h"
+#include"primgraph.h"
+#include"kruskalgraph.h"
 #include <QWidget>
 #include <QString>
 #include <QGraphicsScene>
@@ -24,6 +26,10 @@ private slots:
     void on_Dijkstra_clicked();
 
     void on_Floyd_clicked();
+
+    void on_Kruskal_clicked();
+
+    void on_Prim_clicked();
 
 private:
     void insert();

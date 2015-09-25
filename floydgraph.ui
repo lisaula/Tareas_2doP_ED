@@ -6,29 +6,29 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>751</width>
+    <width>733</width>
     <height>390</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QTableWidget" name="Tabla">
+  <widget class="QGraphicsView" name="Tabla">
    <property name="geometry">
     <rect>
      <x>10</x>
      <y>10</y>
-     <width>361</width>
+     <width>351</width>
      <height>371</height>
     </rect>
    </property>
   </widget>
-  <widget class="QTableWidget" name="TablaP">
+  <widget class="QGraphicsView" name="TablaP">
    <property name="geometry">
     <rect>
-     <x>380</x>
+     <x>370</x>
      <y>10</y>
-     <width>361</width>
+     <width>351</width>
      <height>371</height>
     </rect>
    </property>

@@ -79,7 +79,7 @@ int Floyd::getMyPos(Nodo *n)
     return -1;
 }
 
-void Floyd::analisis(Nodo *origen)
+void Floyd::analisis()
 {
     setTabla(grafo->nodos);
     int nodos = vertices.size();
@@ -140,9 +140,48 @@ void Floyd::printTabla()
     }
 }
 
+QString Floyd::imprimirTabla()
+{
+    QString Texto="";
+    Texto+="\n";
+    for(int i =0;i<grafo->nodos;i++){
+        Texto+=QString("%1 -").arg(i);
+    }
+    Texto+="\n";
+    for(int i =0;i<grafo->nodos;i++){
+        Texto+=QString("%1 ").arg(i);
+        for(int x =0;x<grafo->nodos;x++){
+            int t=tabla[i][x];
+            Texto+=QString("%1 ").arg(t);
+        }
+        Texto+="\n";
+    }
+    Texto+="\n";
+    return Texto;
+}
+
+QString Floyd::imprimirP()
+{
+    QString Texto="";
+    Texto+="\n";
+    for(int i =0;i<grafo->nodos;i++){
+        Texto+=QString("%1 -").arg(i);
+    }
+    Texto+="\n";
+    for(int i =0;i<grafo->nodos;i++){
+        Texto+=QString("%1 ").arg(i);
+        for(int x =0;x<grafo->nodos;x++){
+            int t=p[i][x];
+            Texto+=QString("%1 ").arg(t);
+        }
+        Texto+="\n";
+    }
+    Texto+="\n";
+    return Texto;
+}
+
 void Floyd::printP()
 {
-    cout<<endl;
     int t=0;
     for(int i =0;i<grafo->nodos;i++){
         for(int x =0;x<grafo->nodos;x++){

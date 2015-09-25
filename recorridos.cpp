@@ -73,4 +73,20 @@ void Recorridos::on_Floyd_clicked()
 {
     FLoydGraph *f= new FLoydGraph();
     f->show();
+    f->setGrafo(grafo);
+}
+
+void Recorridos::on_Kruskal_clicked()
+{
+    KruskalGraph *k = new KruskalGraph();
+    k->setGrafo(grafo);
+    k->show();
+
+}
+
+void Recorridos::on_Prim_clicked()
+{
+    PrimGraph * p= new PrimGraph();
+    p->setGrafo(grafo);
+    p->show();
 }

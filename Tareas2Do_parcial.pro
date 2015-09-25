@@ -28,7 +28,9 @@ SOURCES += main.cpp\
     sortsgraph.cpp \
     dijksttable.cpp \
     recorridos.cpp \
-    floydgraph.cpp
+    floydgraph.cpp \
+    kruskalgraph.cpp \
+    primgraph.cpp
 
 HEADERS  += widget.h \
     nodo.h \
@@ -45,10 +47,14 @@ HEADERS  += widget.h \
     sortsgraph.h \
     dijksttable.h \
     recorridos.h \
-    floydgraph.h
+    floydgraph.h \
+    kruskalgraph.h \
+    primgraph.h
 
 FORMS    += widget.ui \
     sortsgraph.ui \
     dijksttable.ui \
     recorridos.ui \
-    floydgraph.ui
+    floydgraph.ui \
+    kruskalgraph.ui \
+    primgraph.ui
